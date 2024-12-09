@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage - Role Selection</title>
+    <link rel="stylesheet" href="homepage.css">
+    <style>
+        /* Reset and base styling */
+/* Reset and base styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom, #4a7391, #ffffff); /* Light blue to white gradient */
+    color: black; /* Black text for contrast */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+}
+
+/* Container styling */
+.container {
+    background: linear-gradient(to bottom, #4a7391, #ffffff); /* Light blue to white gradient */
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    max-width: 400px;
+    width: 100%;
+}
+
+/* Header and paragraph styling */
+h1 {
+    font-size: 2rem;
+    color: #007bff; /* Blue for primary highlight */
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 1rem;
+    margin-bottom: 20px;
+    color: #333; /* Slightly muted black for secondary text */
+}
+
+/* Button container */
+.button-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Button styling */
+.button {
+    display: inline-block;
+    text-decoration: none;
+    padding: 12px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 5px;
+    text-align: center;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+/* Button colors */
+.button:nth-child(1) {
+    background-color: #007bff; /* Blue */
+}
+
+.button:nth-child(1):hover {
+    background-color: #0056b3; /* Darker blue */
+}
+
+.button:nth-child(2) {
+    background-color: #ff5722; /* Orange */
+}
+
+.button:nth-child(2):hover {
+    background-color: #e64a19; /* Darker orange */
+}
+
+.button:nth-child(3) {
+    background-color: #333; /* Black */
+}
+
+.button:nth-child(3):hover {
+    background-color: #000; /* Pure black */
+}
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome</h1>
+        <p>Please select your role to sign up:</p>
+        <div class="button-container">
+            <a href="signup.php" class="button">Sign Up as User</a>
+            <a href="login.php" class="button">Log in as User</a>
+            <a href="admin_login.php" class="button">Log in as Admin</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,90 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden; /* Hide overflow to prevent scrollbars */
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url('image/bucampus.jpg') no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+.container {
+    position: relative;
+    z-index: 1;
+    /* Remove background color to allow video to be fullscreen */
+    background-color: transparent;
+    border: 2px solid rgba(255, 255, 255, 2);
+    backdrop-filter: blur(20px);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+}
+.student-information {
+    font-family: Georgia, serif;
+    text-align: center;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    font-size: 36px;
+    color: #050505;
+}
+h2 {
+    text-align: center;
+}
+input[type="text"],
+input[type="password"],
+input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-sizing: border-box;
+    /* Add padding-left for the icon */
+    padding-left: 30px;
+}
+.toggle-password {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    z-index: 2;
+}
+input[type="submit"] {
+    background-color: #000000;
+    color: white;
+    border: none;
+    cursor: pointer;
+    /* Center align text within button */
+    text-align: center;
+    /* Adjust padding for better alignment */
+    padding: 10px 0;
+}
+input[type="submit"]:hover {
+    background-color: #4c4343;
+}
+.links {
+    margin-top: 10px;
+    text-align: center;
+}
+.links a {
+    text-decoration: none;
+    color: #000000;
+}
+@media screen and (max-width: 480px) {
+    .container {
+        width: 80%;
+    }
+}

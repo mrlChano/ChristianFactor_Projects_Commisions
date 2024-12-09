@@ -1,0 +1,62 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f4f4f4;
+}
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url('image/bucampus.jpg') no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+.container {
+    background-color: transparent;
+    border: 2px solid rgba(255, 255, 255, 1);
+    backdrop-filter: blur(20px);
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 400px;
+}
+.form-box header{
+    font-weight: 600;
+    font-size: 25px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e6e6e6e6;
+    margin-bottom: 10px;
+    text-align: center;
+
+}
+
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+select,
+textarea,
+input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+input[type="submit"] {
+    background-color: #000000;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+}
+input[type="submit"]:hover {
+    background-color: #8d8e8f;
+}
