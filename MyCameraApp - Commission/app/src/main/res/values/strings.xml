@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MyCameraApp</string>
+
+    <string name="gallery_button">Gallery</string>
+    <string name="messages_button">Messages</string>
+    <string name="contacts_button">Contacts</string>
+    <string name="camera_button">Camera</string>
+    <string name="facebook_button">Facebook</string>
+    <string name="youtube_button">YouTube</string>
+
+</resources>
