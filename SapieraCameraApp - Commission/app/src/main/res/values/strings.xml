@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">CameraApplication</string>
+    <string name="gallery_button">Gallery</string>
+    <string name="messages_button">Messages</string>
+    <string name="contacts_button">Contacts</string>
+    <string name="settings_button">Settings</string>
+    <string name="camera_button">Camera</string>
+    <string name="chrome_button">Chrome</string>
+    <string name="facebook_button">Facebook</string>
+    <string name="instagram_button">Instagram</string>
+    <string name="youtube_button">YouTube</string>
+</resources>
