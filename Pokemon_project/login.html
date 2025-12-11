@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log In - Pokémon Trainer Hub</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="login-page">
+    <div class="background-elements">
+        <div class="circle circle-yellow circle-1"></div>
+        <div class="circle circle-blue circle-2"></div>
+        <div class="pokeball-bg pokeball-bg-left"></div>
+    </div>
+
+    <div class="form-container">
+        <div class="form-card login-card">
+            <h2 class="form-title">Log In</h2>
+
+            <form class="login-form" method="POST" action="login_process.php">
+                <div class="form-group">
+                    <label class="form-label">
+                        <span class="label-icon user-icon">👤</span>
+                        Gmail or Username
+                    </label>
+                    <input type="text" name="login_identifier" placeholder="Enter your email or username" class="form-input" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">
+                        <span class="label-icon lock-icon">🔒</span>
+                        Password
+                    </label>
+                    <div class="input-wrapper">
+                        <input type="password" name="password" placeholder="Enter your password" class="form-input" id="loginPassword" required>
+                        <span class="eye-icon" onclick="togglePassword('loginPassword')">👁</span>
+                    </div>
+                </div>
+
+                <div class="forgot-password">
+                    <a href="#" class="link-blue">Forgot Password?</a>
+                </div>
+
+                <div id="error-message" class="error-message" style="display: none;"></div>
+
+                <button type="submit" class="btn-submit">LOG IN</button>
+
+                <div class="form-footer-link">
+                    Don't have an account? <a href="signup.html" class="link-yellow">Create account</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="star-icon">⭐</div>
+
+    <footer class="footer">
+        <p>© 2025 Pokémon Trainer Hub. All rights reserved.</p>
+        <div class="footer-links">
+            <a href="#">Privacy Policy</a>
+            <span> • </span>
+            <a href="#">Terms of Service</a>
+            <span> • </span>
+            <a href="#">Powered by Readdy</a>
+        </div>
+    </footer>
+
+    <script>
+        function togglePassword(id) {
+            const input = document.getElementById(id);
+            if (input.type === 'password') {
+                input.type = 'text';
+            } else {
+                input.type = 'password';
+            }
+        }
+
+        // Handle form submission
+        document.querySelector('.login-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const errorMsg = document.getElementById('error-message');
+            
+            errorMsg.style.display = 'none';
+            
+            fetch('login_process.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    window.location.href = data.redirect || 'dashboard.php';
+                } else {
+                    errorMsg.textContent = data.message;
+                    errorMsg.style.display = 'block';
+                }
+            })
+            .catch(error => {
+                errorMsg.textContent = 'An error occurred. Please try again.';
+                errorMsg.style.display = 'block';
+            });
+        });
+    </script>
+</body>
+</html>
+

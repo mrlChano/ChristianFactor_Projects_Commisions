@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Pokémon Trainer Hub</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="signup-page">
+    <div class="background-elements">
+        <div class="circle circle-yellow circle-1"></div>
+        <div class="circle circle-blue circle-2"></div>
+    </div>
+
+    <div class="form-container">
+        <div class="form-card signup-card">
+            <div class="pokeball-decor"></div>
+            
+            <h2 class="form-title">Sign Up</h2>
+
+            <form class="signup-form" method="POST" action="signup_process.php">
+                <div class="form-group">
+                    <label class="form-label">
+                        <span class="label-icon role-icon">⚡</span>
+                        Pokémon Role
+                    </label>
+                    <select name="pokemon_role" class="form-input form-select" required>
+                        <option value="">Select your role</option>
+                        <option value="trainer">🎒 Trainer (User)</option>
+                        <option value="champion">🌟 Champion (Manager)</option>
+                        <option value="pokemon_master">👑 Pokémon Master (Admin)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">
+                        <span class="label-icon user-icon">👤</span>
+                        Username
+                    </label>
+                    <input type="text" name="username" placeholder="Choose your trainer name" class="form-input" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">
+                        <span class="label-icon email-icon">✉</span>
+                        Gmail
+                    </label>
+                    <input type="email" name="gmail" placeholder="your.email@gmail.com" class="form-input" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">
+                        <span class="label-icon">🔒</span>
+                        Password
+                    </label>
+                    <div class="input-wrapper">
+                        <input type="password" name="password" placeholder="Create a strong password" class="form-input" id="password" required>
+                        <span class="eye-icon" onclick="togglePassword('password')">👁</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">
+                        <span class="label-icon label-icon-green">🔒</span>
+                        Confirm Password
+                    </label>
+                    <div class="input-wrapper">
+                        <input type="password" name="confirm_password" placeholder="Re-enter your password" class="form-input" id="confirmPassword" required>
+                        <span class="eye-icon" onclick="togglePassword('confirmPassword')">👁</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label security-label">
+                        <span class="label-icon label-icon-purple">✓</span>
+                        Pokémon Security Verification
+                    </label>
+                    <div class="captcha-box">
+                        <div class="captcha-text" id="captchaText">SQUIRTLE</div>
+                    </div>
+                    <div class="captcha-actions">
+                        <button type="button" class="btn-refresh" id="refreshCaptcha">Refresh Code</button>
+                    </div>
+                    <input type="text" name="captcha" placeholder="Type the Pokémon code above" class="form-input captcha-input" required>
+                </div>
+
+                <div id="error-message" class="error-message" style="display: none;"></div>
+                <div id="success-message" class="success-message" style="display: none;"></div>
+
+                <button type="submit" class="btn-submit">SIGN UP</button>
+
+                <div class="form-footer-link">
+                    Already have an account? <a href="login.html" class="link-orange">Log in</a>
+                </div>
+            </form>
+
+            <div class="card-footer">
+                <p>© 2025 Pokémon Trainer Hub. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <span> • </span>
+                    <a href="#">Terms of Service</a>
+                    <span> • </span>
+                    <a href="#">Powered by Readdy</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="pokeball-bg-bottom"></div>
+
+    <script>
+        const errorMsg = document.getElementById('error-message');
+        const successMsg = document.getElementById('success-message');
+        const captchaTextEl = document.getElementById('captchaText');
+        const refreshCaptchaBtn = document.getElementById('refreshCaptcha');
+
+        function togglePassword(id) {
+            const input = document.getElementById(id);
+            if (input.type === 'password') {
+                input.type = 'text';
+            } else {
+                input.type = 'password';
+            }
+        }
+
+        function refreshCaptcha() {
+            // Hide previous messages while refreshing the code
+            errorMsg.style.display = 'none';
+            fetch('captcha_refresh.php', {
+                method: 'POST'
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success && data.code) {
+                    captchaTextEl.textContent = data.code;
+                } else {
+                    errorMsg.textContent = data.message || 'Unable to refresh code. Please try again.';
+                    errorMsg.style.display = 'block';
+                }
+            })
+            .catch(() => {
+                errorMsg.textContent = 'Unable to refresh code. Please try again.';
+                errorMsg.style.display = 'block';
+            });
+        }
+
+        // Load an initial captcha code as soon as the page is ready
+        refreshCaptcha();
+
+        refreshCaptchaBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            refreshCaptcha();
+        });
+
+        // Handle form submission
+        document.querySelector('.signup-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            
+            errorMsg.style.display = 'none';
+            successMsg.style.display = 'none';
+            
+            fetch('signup_process.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    successMsg.textContent = data.message;
+                    successMsg.style.display = 'block';
+                    setTimeout(() => {
+                        window.location.href = data.redirect || 'dashboard.php';
+                    }, 1500);
+                } else {
+                    errorMsg.innerHTML = data.message;
+                    errorMsg.style.display = 'block';
+                }
+            })
+            .catch(error => {
+                errorMsg.textContent = 'An error occurred. Please try again.';
+                errorMsg.style.display = 'block';
+            });
+        });
+    </script>
+</body>
+</html>
+
